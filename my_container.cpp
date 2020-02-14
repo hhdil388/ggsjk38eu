@@ -17,7 +17,7 @@ template<typename T, std::size_t N>
 using iterator          = value_type*;
 
 template<typename T, std::size_t N>
-My_container<T, N>::My_vector() :
+My_container<T, N>::My_container() :
     _data(nullptr),
     _size(0),
     _capacity(0)
@@ -25,7 +25,7 @@ My_container<T, N>::My_vector() :
 }
 
 template<typename T, std::size_t N>
-My_container<T, N>::~My_vector()
+My_container<T, N>::~My_container()
 {
     _deallocate()
 }
