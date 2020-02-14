@@ -1,4 +1,5 @@
 #include "my_container.hpp"
+
 #include <iostream>
 
 template<typename T, std::size_t N>
@@ -37,13 +38,13 @@ My_container<T, N>::size_type size()
 }
 
 template<typename T, std::size_t N>
-bool My_container::empty()
+constexpr bool My_container<T, N>::empty()
 {
     return size() == 0;
 }
 
 template<typename T, std::size_t N>
-void My_container::reference at(size_type i)
+reference<T, N> My_container<T, N>::at(size_type i) 
 {
     if(i > _size)
     {
@@ -53,31 +54,31 @@ void My_container::reference at(size_type i)
 }
 
 template<typename T, std::size_t N>
-void My_container::reference operator[](size_type i)
+reference<T, N> My_container<T, N>::operator[](size_type i)
 {
     return _data[i];
 }
 
 template<typename T, std::size_t N>
-void My_container::const_reference operator[](size_type i) const
+const_reference<T, N> My_container<T, N>::operator[](size_type i) const
 {
     return _data[i];
 }
 
 template<typename T, std::size_t N>
-void My_container::iterator begin()
+iterator<T, N> My_container<T, N>::begin()
 {
     return (_size == 0 ? end() : &_data[0]);
 }
 
 template<typename T, std::size_t N>
-void My_container::iterator end()
+iterator<T, N> My_container<T, N>::end()
 {
     return (_sizeBuf == 0 ? nullptr : &_data[_size]);
 }
 
 template<typename T, std::size_t N>
-void My_container::push_back(const value_type& value)
+void My_container<T, N>::push_back(const value_type& value)
 {
     if (_size == 0)
     {
@@ -94,7 +95,7 @@ void My_container::push_back(const value_type& value)
 }
 
 template<typename T, std::size_t N>
-void My_container::void _allocate(size_type count)
+void My_container<T, N>::_allocate(size_type count)
 {
     std::size_t allocSize = count * sizeof(value_type);
     _data = (value_type*)realloc(_data, allocSize);
@@ -106,7 +107,7 @@ void My_container::void _allocate(size_type count)
 }
 
 template<typename T, std::size_t N>
-void My_container::void _deallocate()
+void My_container<T, N>::_deallocate()
 {
     free(_data);
 }

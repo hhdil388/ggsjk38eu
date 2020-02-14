@@ -22,7 +22,7 @@ public:
 
     void push_back(const value_type& value);
 
-    reference at(size_type i);
+    reference at(size_type i); 
     reference operator[](size_type i);
     const_reference operator[](size_type i) const;
     iterator begin();
